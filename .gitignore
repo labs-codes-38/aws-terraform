@@ -1,0 +1,23 @@
+# Terraform directories
+.terraform/
+.terraform.*
+terraform.tfstate
+terraform.tfstate.*
+
+# Terraform providers (évite d'avoir le .exe de 800 Mo…)
+terraform/providers/
+
+# Crash logs
+crash.log
+crash.*.log
+
+# Sensitive files
+#*.tfvars
+*.tfstate.backup
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Executables-
+*.exe
