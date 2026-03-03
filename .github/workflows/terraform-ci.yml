@@ -1,0 +1,52 @@
+name: Terraform CI
+
+on:
+  push:
+    branches:
+      - Dev
+      - Test
+  pull_request:
+    branches:
+      - Dev
+      - Test
+
+jobs:
+  terraform:
+    name: Terraform Validate, Fmt & Plan
+    runs-on: ubuntu-latest
+
+    # Permissions nécessaires au commentaire dans la PR
+    permissions:
+      contents: read
+      pull-requests: write
+
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v4
+
+      - name: setup terraform
+        uses: hashicorp/setup-terraform@v3
+
+      - name: terraform fmt (check formatting)
+        run: terraform fmt -check
+
+      - name: terraform init
+        run: terraform init
+
+      - name: terraform validate
+        run: terraform validate
+
+      # GENÈRE LE PLAN UNIQUEMENT LORS D'UNE PR
+      - name: terraform plan
+        id: plan
+        if: github.event_name == 'pull_request'
+        run: terraform plan -no-color > plan.txt
+
+      # POSTE OU MET À JOUR LE COMMENTAIRE DANS LA PR
+      - name: comment terraform plan on PR
+        if: github.event_name == 'pull_request'
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          header: terraform-plan
+          path: plan.txt
