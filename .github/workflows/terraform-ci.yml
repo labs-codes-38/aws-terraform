@@ -35,7 +35,7 @@ jobs:
       - name: terraform validate
         run: terraform validate
 
-      # AJOUT : configuration AWS dans GitHub Actions
+      # AJOUT : configuration AWS dans GitHub Actions -
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
