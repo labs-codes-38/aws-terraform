@@ -1,7 +1,7 @@
 name: Terraform APPLY (manual)
 
 on:
-  workflow_dispatch:   # déclenchement manuel (bouton "Run workflow")
+  workflow_dispatch:   # déclenchement manuel - (bouton "Run workflow")
 
 jobs:
   terraform-apply:

@@ -1,4 +1,4 @@
-name: Terraform DESTROY (manual)
+name: Terraform DESTROY (manual) #-
 
 on:
   workflow_dispatch:
