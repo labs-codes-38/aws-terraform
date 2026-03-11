@@ -12,7 +12,7 @@ on:
 
 jobs:
   terraform:
-    name: Terraform Validate, Fmt & Plan
+    name: Terraform CI
     runs-on: ubuntu-latest
 
     permissions:
