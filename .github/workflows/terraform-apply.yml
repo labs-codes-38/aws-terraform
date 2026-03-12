@@ -1,11 +1,16 @@
-name: Terraform APPLY (manual)
+name: Terraform APPLY + DESTROY (test)
 
 on:
-  workflow_dispatch:   # déclenchement manuel - (bouton "Run workflow")
+  workflow_dispatch:
+    inputs:
+      destroy:
+        description: "Détruire après Apply ? OUI/NO"
+        default: "NO"
+        required: true
 
 jobs:
-  terraform-apply:
-    name: Terraform Apply
+  tf-test:
+    name: Terraform Apply + Destroy (same runner)
     runs-on: ubuntu-latest
 
     permissions:
@@ -28,8 +33,9 @@ jobs:
       - name: Terraform init
         run: terraform init
 
-      - name: DEBUG
-        run: echo "Step reached"
-
       - name: Terraform apply
         run: terraform apply -auto-approve
+
+      - name: Terraform destroy
+        if: ${{ github.event.inputs.destroy == 'OUI' }}
+        run: terraform destroy -auto-approve
