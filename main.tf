@@ -10,7 +10,6 @@ terraform {
 
 provider "aws" {
   region = var.aws_region
-  profile = "default"
 }
 
 module "vpc" {
@@ -21,8 +20,8 @@ module "vpc" {
 module "subnets" {
   source = "./modules/subnets"
 
-  vpc_id        = module.vpc.vpc_id
-  subnet_a_cidr = var.subnet_a_cidr
+  vpc_id         = module.vpc.vpc_id
+  subnet_a_cidr  = var.subnet_a_cidr
   subnet_bc_cidr = var.subnet_bc_cidr
 }
 
