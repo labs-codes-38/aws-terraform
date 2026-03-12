@@ -28,5 +28,8 @@ jobs:
       - name: Terraform init
         run: terraform init
 
+      - name: DEBUG
+        run: echo "Step reached"
+
       - name: Terraform apply
         run: terraform apply -auto-approve
