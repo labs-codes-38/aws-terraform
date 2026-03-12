@@ -1,17 +1,7 @@
-name: Terraform DESTROY (manual) #-
+name: Terraform DESTROY (manual)
 
 on:
   workflow_dispatch:
-    inputs:
-      environment:
-        description: "Environnement à appliquer"
-        required: true
-        default: "Dev"
-        type: choice
-        options:
-          - Dev
-          - Test
-          - Prod
 
 jobs:
   terraform-destroy:
